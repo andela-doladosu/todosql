@@ -1,0 +1,16 @@
+{
+    "name": "dara/todosql",
+    "authors": [
+        {
+            "name": "Dara Oladosu",
+            "email": "daradosu@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+      "psr-4": {
+        "Dara\\": "src"
+        },
+        "classmap": ["src"]
+    }
+}
