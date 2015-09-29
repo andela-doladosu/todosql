@@ -1,21 +1,19 @@
 <?php
 namespace Dara;
 
-class Connection extends \PDO
+class Connection extends ConnectionBaseClass
 {
-  protected $db;
-  protected $driver;
-  protected $host;
-  protected $username;
-  protected $password;
-
-  public function __construct($db, $driver, $host, $username, $password)
+  public function selectDb($database)
   {
-    $this->driver   = $driver;
-    $this->username = $username;
-    $this->password = $password;
-    $this->host = $host;
-    $this->db = $db;
-    parent::__construct($this->driver, $this->user, $this->password);
+    $this->exec('use '.$database);
+  }
+
+  public function getToDos($table, $column1, $column2)
+  {
+    $action = $this->prepare('Select '.$column1.', '.$column2.' from '.$table);
+    $action->execute();
+    while ($result = $action->fetch(\PDO::FETCH_ASSOC)) {
+      echo $result['title'].': '. $result['description'].'<br/>';
+    }
   }
 }
